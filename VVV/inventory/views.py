@@ -6,7 +6,7 @@ from .models import Bench
 
 
 class FoliumView(TemplateView):
-    template_name = "folium/map.html"
+    template_name = "map.html"
 
     def get_context_data(self, **kwargs):
         m = folium.Map(

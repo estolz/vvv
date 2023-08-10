@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-m1xdk&=6eb-&92c^@)+62hvc&#hn$hdi81o8p$61e^+@ic=u8k"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -17,12 +17,14 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "inventory.apps.InventoryConfig",
+    "core.apps.CoreConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "bootstrap5",
 ]
 
 MIDDLEWARE = [
