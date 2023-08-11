@@ -1,12 +1,14 @@
 {%extends 'base.html'%} {%block 'body'%}
 <body>
-  {{map|safe}}
-  <script>
-    {
+  <div class="m-4 my-lg-5">
+    {{map|safe}}
+    <script>
       {
-        map.script.render | safe;
+        {
+          map.script.render | safe;
+        }
       }
-    }
-  </script>
+    </script>
+  </div>
 </body>
 {% endblock %}

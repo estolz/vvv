@@ -5,7 +5,7 @@
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
   </head>
 
-  <div class="container" id="Navbar">
+  <div class="mx-0 mx-lg-5 px-lg-5 text-center" id="Navbar">
     {% load static %}
     <img src="{% static 'logo.png' %}" alt="Logo" />
     <nav
@@ -43,25 +43,5 @@
     {% block 'body' %} {% endblock %}
   </div>
 
-  <style>
-    .container {
-      padding-top: 75px;
-      padding-bottom: 15px;
-    }
-    form {
-      display: inline-block;
-    }
-    @media (max-width: 600px) {
-      #Navbar {
-        padding: 0;
-      }
-      #Filler {
-        padding-top: 0;
-      }
-      .container {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-  </style>
+  <style></style>
 </html>
