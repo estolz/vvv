@@ -13,20 +13,43 @@ class BenchForm(forms.ModelForm):
         label="Längengrad",
         help_text="Längengrad: Werte zwischen 7.1 und 7.3 sind realistisch für Wermelskirchen",
     )
-    description = forms.CharField(
-        label="Beschreibung",
-        help_text="Kurze Beschreibung zur Bank",
+    damages = forms.IntegerField(
+        label="Beschädigungen",
+        help_text="Anzahl der Beschädigungen der Bank/Schuzuhütte durch Vandalismus oÄ.",
     )
 
     class Meta:
         model = Bench
-        fields = "__all__"
+        fields = (
+            "number",
+            "location_description",
+            "latitude",
+            "longitude",
+            "type",
+            "plastic_bench",
+            "donation",
+            "damages",
+            "last_maintenance",
+            "requires_maintenance",
+            "maintenance_description",
+        )
 
 
 class BenchAdmin(admin.ModelAdmin):
     form = BenchForm
-    list_display = ["description", "latitude", "longitude"]
-    search_fields = ("description", "latitude", "longitude")
+    list_display = (
+        "number",
+        "location_description",
+        "last_maintenance",
+        "donation",
+    )
+    search_fields = ("number", "donation", "location_description")
+    list_filter = (
+        "requires_maintenance",
+        "plastic_bench",
+        "damages",
+        "type",
+    )
 
 
 admin.site.register(Bench, BenchAdmin)
