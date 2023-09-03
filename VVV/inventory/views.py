@@ -11,8 +11,12 @@ class FoliumView(TemplateView):
     template_name = "map.html"
 
     def get_context_data(self, **kwargs):
-        m = folium.Map(
-            location=[51.138028, 7.243212], zoom_start=13, tiles="OpenStreetMap"
+        folium_map = folium.Map(
+            location=[51.138028, 7.243212],
+            zoom_start=13,
+            tiles="OpenStreetMap",
+            min_zoom=10,
+            scrollWheelZoom=False,
         )
 
         for bench in Bench.objects.all():
@@ -23,16 +27,17 @@ class FoliumView(TemplateView):
 
             donation = ""
             if bench.donation:
-                donation = f"<b>Gespendet von</b> <i>{bench.donation}</i><br />"
+                donation = f"<b>Gespendet von:</b> <i>{bench.donation}</i><br />"
 
             folium.Marker(
                 location=[bench.latitude, bench.longitude],
-                popup=f"<b>Nummer:</b> {bench.number}<br />{donation}<b>Standort:</b> {bench.location_description}<br /><b>Koordinaten:</b> {bench.latitude}, {bench.longitude}",
+                popup=f"<div style='font-size:3.5vh; min-width:35.0vw'><b>Nummer:</b> {bench.number}<br />{donation}"
+                f"<b>Standort:</b> {bench.location_description}<br /><b>Koordinaten:</b> {bench.latitude}, {bench.longitude}</div>",
                 icon=map_icon,
-            ).add_to(m)
+            ).add_to(folium_map)
 
-        m = m._repr_html_()
-        return {"map": m}
+        folium_map = folium_map._repr_html_()
+        return {"map": folium_map}
 
 
 def bench_csv_download(request):
