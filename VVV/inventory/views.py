@@ -14,16 +14,25 @@ class FoliumView(TemplateView):
         folium_map = folium.Map(
             location=[51.138028, 7.243212],
             zoom_start=13,
-            tiles="OpenStreetMap",
+            tiles=None,
             min_zoom=10,
             scrollWheelZoom=False,
         )
+        folium.TileLayer(
+            tiles="OpenStreetMap",
+            control=False,
+        ).add_to(folium_map)
+
+        benchs = folium.FeatureGroup(name="Bänke", show=True).add_to(folium_map)
+        shed = folium.FeatureGroup(name="Schutzhütte", show=True).add_to(folium_map)
 
         for bench in Bench.objects.all():
             if bench.type == 1:
                 map_icon = folium.Icon(color="green", icon="chair", prefix="fa")
+                layer = benchs
             else:
                 map_icon = folium.Icon(color="blue", icon="house-user", prefix="fa")
+                layer = shed
 
             donation = ""
             if bench.donation:
@@ -34,8 +43,9 @@ class FoliumView(TemplateView):
                 popup=f"<div style='font-size:3.5vh; min-width:35.0vw'><b>Nummer:</b> {bench.number}<br />{donation}"
                 f"<b>Standort:</b> {bench.location_description}<br /><b>Koordinaten:</b> {bench.latitude}, {bench.longitude}</div>",
                 icon=map_icon,
-            ).add_to(folium_map)
+            ).add_to(layer)
 
+        folium.LayerControl().add_to(folium_map)
         folium_map = folium_map._repr_html_()
         return {"map": folium_map}
 
