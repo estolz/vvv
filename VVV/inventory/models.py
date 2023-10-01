@@ -30,8 +30,8 @@ class Bench(models.Model):
         verbose_name="Benötigt Reperatur", default=False
     )
     maintenance_description = models.TextField(
-        max_length=500,
-        verbose_name="Beschreibung der benötigten Reperatur",
+        max_length=1000,
+        verbose_name="Anmerkungen zur Bank und Wartung",
         null=True,
         blank=True,
     )
