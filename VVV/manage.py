@@ -2,12 +2,12 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from vvv.settings.env_config import ENVIRONMENT
+from decouple import config
 
 
 def main():
     """Run administrative tasks."""
-    if ENVIRONMENT == "PROD":
+    if config("ENVIRONMENT") == "PROD":
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vvv.settings.prod_settings")
     else:
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vvv.settings.dev_settings")
