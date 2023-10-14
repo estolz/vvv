@@ -47,7 +47,9 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-static/
+vvv/static/admin
+VVV/vvv/static
+static/js
 
 # pipenv
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
