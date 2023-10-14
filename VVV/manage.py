@@ -2,11 +2,15 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from vvv.settings.env_config import ENVIRONMENT
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vvv.settings')
+    if ENVIRONMENT == "PROD":
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vvv.settings.prod_settings")
+    else:
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vvv.settings.dev_settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -18,5 +22,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
