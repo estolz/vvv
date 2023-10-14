@@ -8,4 +8,5 @@ admin.site.site_title = "Konfiguration der Website"
 urlpatterns = [
     path("", include("inventory.urls")),
     path("admin/", admin.site.urls),
+    path("", include("pwa.urls")),
 ]
