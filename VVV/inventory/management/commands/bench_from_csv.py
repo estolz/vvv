@@ -26,8 +26,8 @@ class Command(BaseCommand):
                         donation=str(row[4]),
                         damages=int(row[5]),
                         type=int(row[6]),
-                        plastic_bench=(row[7] == True),
+                        plastic_bench=(row[7] == "True"),
                         last_maintenance=row[8],
                         maintenance_description=row[9],
-                        requires_maintenance=(row[10] == True),
+                        requires_maintenance=(row[10] == "True"),
                     )
