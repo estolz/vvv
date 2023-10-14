@@ -12,7 +12,7 @@ class FoliumView(TemplateView):
 
     def get_context_data(self, **kwargs):
         folium_map = folium.Map(
-            location=[51.138028, 7.243212],
+            location=[51.131028, 7.203212],
             zoom_start=13,
             tiles=None,
             min_zoom=10,
