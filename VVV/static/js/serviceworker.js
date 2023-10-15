@@ -8,17 +8,15 @@ self.addEventListener("install", function (event) {
   );
 });
 
-self.addEventListener("fetch", function (event) {
-  var requestUrl = new URL(event.request.url);
-  if (requestUrl.origin === location.origin) {
-    if (requestUrl.pathname === "/") {
-      event.respondWith(caches.match(""));
-      return;
-    }
-  }
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then(function (response) {
-      return response || fetch(event.request);
-    })
+    caches
+      .match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
+      })
+      .catch(() => {
+        return caches.match("offline");
+      })
   );
 });

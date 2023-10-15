@@ -89,7 +89,6 @@ PWA_APP_SPLASH_SCREEN = [
 PWA_APP_DIR = "ltr"
 PWA_APP_LANG = "de_DE"
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
