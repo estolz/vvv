@@ -73,3 +73,6 @@ venv.bak/
 
 # DB backup
 bench.csv
+
+# Stuff
+.idea/
