@@ -3,9 +3,16 @@ import csv
 
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from jinja2 import Template
 
 from .models import Bench
 
+class ReferrerMeta(folium.MacroElement):
+    _template = Template("""
+        {% macro header(this, kwargs) %}
+        <meta name="referrer" content="unsafe-url">
+        {% endmacro %}
+    """)
 
 class FoliumView(TemplateView):
     template_name = "map.html"
@@ -23,6 +30,7 @@ class FoliumView(TemplateView):
             attr='© OpenStreetMap contributors',
             control=False,
         ).add_to(folium_map)
+        ReferrerMeta().add_to(folium_map)
 
         benchs = folium.FeatureGroup(name="Bänke", show=True).add_to(folium_map)
         shed = folium.FeatureGroup(name="Schutzhütte", show=True).add_to(folium_map)
