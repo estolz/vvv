@@ -17,10 +17,10 @@ class FoliumView(TemplateView):
             tiles=None,
             min_zoom=10,
             scrollWheelZoom=False,
-            title="VVV-Baenke",
         )
         folium.TileLayer(
-            tiles="OpenStreetMap",
+            tiles="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            attr='© OpenStreetMap contributors',
             control=False,
         ).add_to(folium_map)
 
